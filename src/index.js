@@ -12,6 +12,7 @@ io.on('connection', socket => {
   // console.log('Nueva conexión', socket.id);
   const address = socket.handshake;
   console.log(address);
+  console.log(address.headers['x-forwarded-for']);
   // console.log('New connection from ' + address.address + ':' + address.port);
   socket.emit('connected');
 });
