@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 
 io.on('connection', socket => {
   // console.log('Nueva conexión', socket.id);
-  const address = socket.handshake.address;
+  const address = socket.handshake;
   console.log(address);
   // console.log('New connection from ' + address.address + ':' + address.port);
   socket.emit('connected');
