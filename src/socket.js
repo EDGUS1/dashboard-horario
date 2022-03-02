@@ -15,16 +15,15 @@ function generarElementos() {
 
 let elementos = generarElementos();
 
-async function test() {
-  const respuesta = (await pool.query('select * from usuario')).rows[0];
-  console.log(respuesta);
+function test() {
+  const respuesta = pool
+    .query('select * from usuario')
+    .then(a => console.log(a.rows));
 }
-async function test_create() {
-  console.log(
-    await await pool.query(
-      'create table test (nombre varchar(30), clave varchar(10))'
-    )
-  );
+function test_create() {
+  pool
+    .query('create table test (nombre varchar(30), clave varchar(10))')
+    .then(res => console.log(res));
 }
 
 export default io => {
