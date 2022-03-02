@@ -158,3 +158,5 @@ dist
 .ionide
 
 src/public/output.css
+
+config.js
