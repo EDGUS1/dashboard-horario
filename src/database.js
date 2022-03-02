@@ -1,5 +1,13 @@
 const { Pool } = require('pg');
-const { HOST, USER, PASSWORD, DATABASE, DB_PORT } = require('../config');
+if (process.env.ENVIRONMENT != 'PROD') {
+  const {
+    DB_HOST,
+    DB_USER,
+    DB_PASSWORD,
+    DB_DATABASE,
+    DB_PORT,
+  } = require('../config');
+}
 
 const pool = new Pool({
   host: process.env.DB_HOST || DB_HOST,

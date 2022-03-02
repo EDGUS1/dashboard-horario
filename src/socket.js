@@ -16,7 +16,8 @@ function generarElementos() {
 let elementos = generarElementos();
 
 async function test() {
-  console.log((await pool.query('select * from usuario')).rows[0]);
+  const respuesta = (await pool.query('select * from usuario')).rows[0];
+  console.log(respuesta);
 }
 async function test_create() {
   console.log(
