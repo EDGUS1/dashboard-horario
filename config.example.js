@@ -1,7 +1,7 @@
 module.exports = {
-  HOST: '',
-  USER: '',
-  PASSWORD: '',
-  DATABASE: '',
-  PORT: 1234,
+  DB_HOST: '',
+  DB_USER: '',
+  DB_PASSWORD: '',
+  DB_DATABASE: '',
+  DB_PORT: 1234,
 };
