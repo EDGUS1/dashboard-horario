@@ -1,12 +1,19 @@
 const { Pool } = require('pg');
+let DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT;
+
 if (process.env.ENVIRONMENT != 'PROD') {
   const {
-    DB_HOST,
-    DB_USER,
-    DB_PASSWORD,
-    DB_DATABASE,
-    DB_PORT,
+    DBHOST,
+    DBUSER,
+    DBPASSWORD,
+    DBDATABASE,
+    DBPORT,
   } = require('../config');
+  DB_HOST = DBHOST;
+  DB_USER = DBUSER;
+  DB_PASSWORD = DBPASSWORD;
+  DB_DATABASE = DBDATABASE;
+  DB_PORT = DBPORT;
 }
 
 const pool = new Pool({
