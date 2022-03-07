@@ -6,11 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
     <title>Document</title>
+    <style>
+      /* * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      } */
+    </style>
   </head>
   <body>
-    <div id="app" class="grid grid-cols-7 grid-flow-row gap-4"></div>
+    <div
+      id="navigation"
+      class="fixed inset-5 right-0 w-20 bg-orange-100 duration-500 flex justify-center items-center"
+    >
+      <div
+        id="menuToggle"
+        class="absolute top-0 left-0 w-full h-16 border-b border-b-solid border-b-green-900 cursor-pointer flex items-center justify-start px-6 before:content-[''] before:absolute before:w-8 before:h-0.5 before:bg-sky-900 before:-translate-y-2 before:duration-500 after:content-[''] after:absolute after:w-8 after:h-0.5 after:bg-sky-900 after:translate-y-2 after:duration-500 after:shadow-2xl after:shadow-red-500"
+      ></div>
+      <ul class="flex flex-col gap-2.5 w-full">
+        <li class="relative w-full h-14 py-0 px-2.5 duration-500 translate-x-7">
+          <a
+            href="#"
+            class="relative flex items-center justify-start w-24 text-center"
+          >
+            <span
+              class="relative block w-14 h-14 leading-10 duration-500 rounded-xl flex flex-col justify-center items-center text-2xl before:content-[''] before:absolute before:top-2.5 before:left-0 before:w-full before:h-full before:bg-red-500 before:blur before:opacity-0 duration-500 bg-red-600 text-white"
+            >
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span
+              class="relative h-14 flex items-center invisible opacity-0 duration-500 text-red-500"
+            >
+              Home
+            </span>
+          </a>
+        </li>
+        <li class="relative w-full h-14 py-0 px-2.5 duration-500">
+          <a
+            href="#"
+            class="relative flex items-center justify-start w-24 text-center"
+          >
+            <span
+              class="relative block w-14 h-14 leading-10 duration-500 rounded-xl flex flex-col justify-center items-center text-2xl before:content-[''] before:absolute before:top-2.5 before:left-0 before:w-full before:h-full before:bg-red-500 before:blur before:opacity-0 duration-500"
+            >
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span
+              class="relative h-14 flex items-center invisible opacity-0 duration-500"
+            >
+              Dashboard
+            </span>
+          </a>
+        </li>
+        <li class="relative w-full h-14 py-0 px-2.5 duration-500">
+          <a
+            href="#"
+            class="relative flex items-center justify-start w-24 text-center"
+          >
+            <span
+              class="relative block w-14 h-14 leading-10 duration-500 rounded-xl flex flex-col justify-center items-center text-2xl before:content-[''] before:absolute before:top-2.5 before:left-0 before:w-full before:h-full before:bg-red-500 before:blur before:opacity-0 duration-500"
+            >
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span
+              class="relative h-14 flex items-center invisible opacity-0 duration-500"
+            >
+              Settings
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
+    <div
+      id="app"
+      class="grid grid-cols-7 grid-flow-row gap-4 select-none ml-28 mt-10"
+    ></div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="/socket.io/socket.io.min.js"></script>
     <script src="main.js"></script>
+    <script>
+      const menuToggle = document.querySelector('#menuToggle');
+      const navigation = document.querySelector('#navigation');
+
+      menuToggle.onclick = function () {
+        navigation.classList.toggle('w-64');
+        menuToggle.classList.toggle('before:translate-y-0');
+        menuToggle.classList.toggle('after:translate-y-0');
+        menuToggle.classList.toggle('before:rotate-45');
+        menuToggle.classList.toggle('after:-rotate-45');
+        document.querySelectorAll('li a > :last-child').forEach(e => {
+          e.classList.toggle('invisible');
+          e.classList.toggle('opacity-0');
+        });
+      };
+      const list = document.querySelectorAll('li');
+      function activeLink() {
+        list.forEach(item => {
+          item.childNodes[1].childNodes[1].classList.remove('bg-red-600');
+          this.childNodes[1].childNodes[1].classList.add('bg-red-600');
+          item.childNodes[1].childNodes[1].classList.remove('text-white');
+          this.childNodes[1].childNodes[1].classList.add('text-white');
+          item.childNodes[1].classList.remove('text-red-500');
+          this.childNodes[1].classList.add('text-red-500');
+          item.classList.remove('translate-x-7');
+          this.classList.add('translate-x-7');
+        });
+      }
+      list.forEach(item => {
+        item.addEventListener('click', activeLink);
+      });
+    </script>
   </body>
 </html>
